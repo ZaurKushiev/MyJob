@@ -10,29 +10,24 @@ public class Colt : MonoBehaviour
     public float impactForce = 30f;
     public float spread;
     private bool isShooting = true;
-
     //Effects
     public Camera fpscamera;
     public ParticleSystem muzzleflash;
     public GameObject impactEffect;
     public GameObject impactEnemyEffect;
     private Animator _animator;
-
     private float nextTimeToFire = 0f;
-
     //Ammo
     public int currentAmmo = 8;
     public int allAmmo = 0;
     public int fullAmmo = 24;
     public TextMeshProUGUI bullets1;
-
     //Audio
     private AudioSource _audioSourse;
     public AudioClip ammoSound;
     public AudioClip shotSound;
     public AudioClip reloadSound;
     public AudioClip zatvorSound;
-
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -53,14 +48,11 @@ public class Colt : MonoBehaviour
             muzzleflash.Play();
             _animator.SetTrigger("isShoot");
             _audioSourse.PlayOneShot(shotSound);
-
             //Spread
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread);
-
             //Calculate Direction with Spread
             Vector3 direction = fpscamera.transform.forward + new Vector3(x, y, 0);
-
             RaycastHit hit;
             if (Physics.Raycast(fpscamera.transform.position, direction, out hit, range))
             {
@@ -118,7 +110,6 @@ public class Colt : MonoBehaviour
     {
         isShooting = true;
     }
-
     //Magazin 
     private void OnTriggerEnter(Collider other)
     {
